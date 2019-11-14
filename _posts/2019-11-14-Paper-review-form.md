@@ -9,7 +9,7 @@ comments: true
 ---
 
 # 제목
-Original Paper Link: [here](https://ninebell.github.io/)
+Original Paper Link: [here](https://ninebell.github.io/)  
 My implementation Link: [here](https://ninebell.github.io/)
 
 ##요약
