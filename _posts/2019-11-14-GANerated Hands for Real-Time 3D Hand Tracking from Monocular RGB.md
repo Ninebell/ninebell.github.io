@@ -13,7 +13,7 @@ Original Paper Link: [here](https://handtracker.mpi-inf.mpg.de/projects/GANerate
 My implementation Link: [here](https://github.com/Ninebell/GaneratedHandsForReal_TIME)
 
 ##요약
-> 해당 논문에서는 GeoConGAN 모델을 통해 Synth 이미지를 통해 Data를 확보하여 RegNet을 학습,
+> 해당 논문에서는 GeoConGAN 모델을 활용하여 Synth 이미지로부터 "GANerated Data"를 확보하여 RegNet을 학습,
 > Kinematic Skeleton fitting을 통해 손 관절의 2D Heatmap과 3D 좌표를 추적하는 기법에 대한 논문이다.
 
 ##논문 내용
