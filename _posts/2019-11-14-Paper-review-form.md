@@ -12,17 +12,16 @@ comments: true
 Original Paper Link: [here](https://ninebell.github.io/)  
 My implementation Link: [here](https://ninebell.github.io/)
 
-##요약
-> 논문의 요약(논문의 초록과는 다르다.)
+## Abstraction
 
-##논문 내용
-1. Title1 
-    1. sub title1
-    2. sub title2 
-2. Title2 
-    1. sub title1 
-    2. sub title2 
+## Introduction
 
-##생각:
-> 논문에 대한 생각, 개선점, 한계 등등을 기록
+## Related work
+
+## Method
+
+## Experiment
+
+## Conclusion
+
 
