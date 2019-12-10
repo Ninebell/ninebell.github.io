@@ -1,6 +1,6 @@
 ---
 layout: post  
-title: "Dive into deep learning"    
+title: "Introduction into 'Dive into deep learning'"    
 date: 2019-12-10   
 excerpt: "intro"  
 tags: [d2l]  
@@ -47,7 +47,9 @@ knob이 랜덤하게 결정되면 alexa, Apricot이나 다른 영단어에 대�
 하게 한다. 
 
 <figure>
-    <a href="/images/d2l/training_process.png"><img src="/images/d2l/training_process.png"></a>
+    <a href="https://github.com/Ninebell/ninebell.github.io/blob/master/images/d2l/training_process.PNG ">
+        <img src="https://github.com/Ninebell/ninebell.github.io/blob/master/images/d2l/training_process.PNG">
+    </a>
 </figure>
 
 
