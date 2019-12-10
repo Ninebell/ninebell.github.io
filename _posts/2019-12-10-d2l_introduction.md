@@ -53,12 +53,16 @@ training process는 아래와 같다.
 4. 모델이 알맞게 동작할때까지 반복한다.
 
 {% capture images %}  
-    /images/d2l/training_process.PNG
+    /images/d2l/training_process.PNG  
 {% endcapture %}
-<figure>
-    <a href="http://github.com/Ninebell/ninebell.github.io/blob/master/images/d2l/training_process.PNG ">
-        <img src="/images/d2l/training_process.PNG">
-    </a>
-</figure>
+
+Deep learning은 machine learing 문제를 해결하기 위한 방법중의 하나이다. 그래서 Deep learning만 얘기하는게 아니라 machine learning
+도 함께 얘기한다. machine learning 문제 해결 방법중 Deep learning이 중요한 이유가 있다.
+
+1. raw audio sginal, raw pixel 값은 일반적인 ML 방법론에서는 알맞지가 않다. Deep learning은 계산을 휘한 수많은 layer로 이루어 
+져 있어서 정확도가 deep 하다. 예전에는 이런 shallow model에 대하여 데이터를 변동하는 방법을 고안하기도 했다. deep learning의 장점중
+하나는  shallow model을 대체 할뿐만 아니라 feature engineering 과정도 대체한다.
+2. domain-specific preprocessing을 대체한다. 특히 분야에 대한 경계없이 많은 분야에 적용이 가능하다.
 
 
+## 1.2 The Key Componets: Data, Models and Algorithms
