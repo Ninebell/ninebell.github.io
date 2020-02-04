@@ -58,7 +58,12 @@ Graph CNN의 입력으로 들어가 N vertice의 3D Hand Mesh를 생성하게된
 
 ### Grpah CNNs for Mesh and Pose Estimation  
 
-![Fig4](../images/3d_hand_shape/fig_4.PNG)
+
+
+{% capture images %}  
+    /images/3d hand shape/fig_4.PNG  
+{% endcapture %}
+
 - 3D Hand mesh는 graph 구조로 나타낼수있다. 이를 위해 Chebyshev Spectral Graph CNN을 이용하여 3D 손좌표를 생성한다.  
 
 - 3D mesh는 무방향 그래프 M = (V,E,W)로 표현이 가능하다. V ={v_i} N개의 Mesh의 vertice를 나타낸다. E={e_i} Mesh에 존재하는 edge를 뜻하고 W=(w_ij)로 mesh의 인접 행렬을 나타낸다. (i, j)의 edge가 존재한다면 w_ij=1 아니면 w_ij=0 으로 표기한다. 정규화 grpah Laplacian은 "L = I-D^(-1/2)*W*D(^-1/2)" 로 계산된다. D= diag(sig(w_ij)) 이고 W는 인접행렬을 뜻한다. M의 Laplacian L은 학습하는 동안 수정된다.  
