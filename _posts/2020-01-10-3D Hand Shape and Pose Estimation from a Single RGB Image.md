@@ -51,7 +51,31 @@ validation으로 사용한다. 그리고 583개의 실제 이미지도 순수 ev
 
 ## Method
 ### Overview
-- 
+- 단일 RGB이미지에서 Full 3D mesh와 3D 손 좌표를 생성하는 방법에 대해 제안한다. 2 stacked hour glass 모델을 거쳐서 2D Heatmap을 추론하고. 추론된 heatmap은 latent vector로 인코딩되는데 이는 8개의 residual model, 4개의 pooling을 거친다. latent vector는 
+Graph CNN의 입력으로 들어가 N vertice의 3D Hand Mesh를 생성하게된다. 3D 손 좌표는 추출된 3D Hand mesh vertices를 linear Graph CNN을 통해 추론된다.  
+  
+- 이 작업을 위해 먼저 위조 데이터셋에 대하여 모델을 학습시킨다. 이후 실제 이미지에 대하여 학습 시킨다(fine-tune). 위조 데이터의 경우 3D 좌표, 3D Mesh가 있어 end-to-end로 full supervised가 가능하다. 실제 이미지에 대해서는 3D Mesh와 3D 좌표가 없어 semi supervised로 훈련을 하고 이때는 depth camera를 이용한다. 이떄 평가를위해 3D Mesh를 생성하는데 3D Mesh에 대한 quality를 보장하기위에 pseudo-ground truth mesh를 생성한다. 이에 대한 내용은 이후 설명이 된다.  
+
+### Grpah CNNs for Mesh and Pose Estimation  
+
+![Fig4](../images/3d_hand_shape/fig_4.PNG)
+- 3D Hand mesh는 graph 구조로 나타낼수있다. 이를 위해 Chebyshev Spectral Graph CNN을 이용하여 3D 손좌표를 생성한다.  
+
+- 3D mesh는 무방향 그래프 M = (V,E,W)로 표현이 가능하다. V ={v_i} N개의 Mesh의 vertice를 나타낸다. E={e_i} Mesh에 존재하는 edge를 뜻하고 W=(w_ij)로 mesh의 인접 행렬을 나타낸다. (i, j)의 edge가 존재한다면 w_ij=1 아니면 w_ij=0 으로 표기한다. 정규화 grpah Laplacian은 "L = I-D^(-1/2)*W*D(^-1/2)" 로 계산된다. D= diag(sig(w_ij)) 이고 W는 인접행렬을 뜻한다. M의 Laplacian L은 학습하는 동안 수정된다.  
+- NxF 차원의 signal f=(f_1 ... f_N)^T  (그래프의 vertice)가 주어지면 3D Mesh의 N개의 vertice들을 F-dim으로 표현한다.
+> f_out = sig( T_k(L) * f_in * theta_k)  
+> T_k(x) = 2xT_(k-1) - T_(k-2)(x) // T_0 = 1, T_1 = x  
+> L: Rescaled Laplacian := 2L/lambda_max - I_N // lambda_max: L의 최대 고유 벡터  
+> theta_k: 학습 변수
+
+- 위 식은 K-localized로 K 차원의 다각형 그래프 라플라시안으로 K개의 연관 노드에만 영향을 미친다.  이에 대하 더 깊은 이해는 [Convolutional neural networks on graphs with fast localized spectral filtering.]을 참고 한다.
+
+- 이 과정에서 mesh generation을 위해 계층구조를 설계하였다. 이는 coarse에서 fine으로 나아가는 graph convolution을 수행한다. coarse grpah의 toplogies는 미리 계산되고 학습과 테스트 과정에소 고정되어 있다. Multilevel clustering algorithm을 통해 coarse의 자식들을 fine grphe에 맞게 계산 한다. camera의 intrinsic과 상관없이 추론하기 위해 UV 좌표계와 mesh의 depth를 출력한다. 이 값들은 camera intrinsic으로 3D 좌표계로 변환이 가능하다.  
+  
+- 3D 좌표에 대한 평가는 3D mesh vertice들을 simplifiedd Graph CNN을 통해 가능하다. 
+
+### Fully-supervised Training on Synthetic Dataset
+
 
 ## Experiment
 
